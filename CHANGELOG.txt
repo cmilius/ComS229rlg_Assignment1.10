@@ -1,0 +1,59 @@
+CHANGELOG.txt
+Charlie Milius
+ComS 229
+Sun Apr 19, 2015
+Assignment 1.10 PC Equipment and Updated Combat
+
+**Sun Apr 19, 2015**
+Today, I downloaded Professor Sheaffer's code and started looking through it to see how he solved the last 
+assignment.  I decided to take his suggested plan of attack that he posted on BB, and added the extra fields 
+I will need to the pc struct.  I added them as arrays so I could increment through them later for item swap 
+checks.
+
+**Mon Apr 20, 2015**
+Today I did a lot of base work for the item menu screens.  I added the button functionality, as well as the 
+ability to "select" which item you wanted to do the action on by having the user move a star up and down next 
+to the selected item.  They can enter and exit the menu without affecting game play.  I also started adding 
+the functionality for picking up items in the dungeon.  I can detect when I am standing on an item, and then 
+delete it from the dungeon so it disappears.  I am trying to display the items I have picked up in my GUI 
+as well, however I keep getting segmentation faults.
+
+**Tue Apr 21, 2015**
+Today I added the functionality to take off items, drop items, and expunge items from the game.  Rather than 
+displaying the name of the item I picked up, I just used the get_symbol() function that was already there for 
+testing.  I also added basic functionality for the wear function so items would be added without regard to their 
+"proper" equip slot.  I tested all of these and they worked great.  I then tried to add the ability for the names 
+to be displayed...but kept crashing the program so I took a break and went to sleep.
+
+**Wed Apr 22, 2015**
+Today I got the names to appear in the pop-up interface that I made for the items.  I ended up making my own function 
+and it turned out to be easier than I thought it would be (thanks to my "rested" brain). I also finished up adding 
+the correct wear function, taking into account the swapping of the rings if a user wears more than one.
+	
+**Thu Apr 23, 2015**	
+Today I added the functionality for adding up the total speed and attack values of the pc, as well as a side bar that 
+will display the pc's total hp and their current speed value.  I was unable to include the damage value due to the fact 
+that it is stored as one (or more dice rolls).  I also wrote the code that will do the mele attacking.  Everything in 
+this worked with solid test value numbers, however the program would seg fault when I tried to roll the base attack dice, 
+and would give me a floating point exception when trying to roll the equipment dice.  I gave up and went to sleep.
+
+**Fri Apr 24, 2015**		
+Today I went to office hours and they were able to help me with my seg fault error.  Turns out that the pc was never being 
+initialized with a dice object.  So once we did that, now there is no more seg fault error.  We couldn't figure out the 
+floating point error though.  I used valgrind to track down where it was happening and it was in the dice roll function in 
+the c++ object.  So looking through there, the only place that a divide by zero error was happening was in the rand() macro. 
+I changed the sides value to a solid number, and then the problem went away and the program worked great.  So in order to use 
+the sides value, I created a temporary one as a uint32_t and then casted sides to that value.  Recompiling and running it again, 
+the program ran with no problems!  Finally done...thanks for the much needed extension.	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
